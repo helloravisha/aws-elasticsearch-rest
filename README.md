@@ -10,8 +10,7 @@ Using Java, write a micro service that invokes AWS elastic search and make it av
 
 
 ## System  Architecture
-Following are the different AWS componenents leveraged for building highy avalabile and scalable
-system. 
+Following is my current system architecture for building Highy Available  and Scalable system by leveraging different AWS components.
 
 ![Alt text](docs/Architecture.png)  
 
@@ -25,15 +24,14 @@ level micro service acrchitecture of the services in the system.
 
 ## Final Deliverables 
 
-Following are the three  Amazon  API Gateway based Microservice API's  developed with and without paginaton with above architecture 
-in place. you can pass query string sponsorname, sponsorstate or  planname  with required value.
-along with this query parameter , you can use pagination as required.  
+With the above architectural components in place, following are the three API's  exposed using  Amazon  API Gateway. All the three methods provides optional pagination along
+with  the required query string sponsorname, sponsorstate or  planname.
 
-* With Pagination : You can mention the number of records along with the offset.
-* Without Pagination : By default every  API returns Max 10 records. 
+* With Pagination : You can mention the number of records along with the offset,  here you can pass two optional  extra parameters size and offset.
+* Without Pagination : By default every  API returns Max 10 records, here you should pass the required parameter.  
 
 
-### Search by Sponsor Name
+### 1. Search by Sponsor Name
 
 * ##### Without Pagination 
 https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorname=david
@@ -44,7 +42,7 @@ https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorname=david&siz
 ### Sample Output
 ![Alt text](docs/SponsorName.png)
 
-### Search by Sponsor State
+### 2. Search by Sponsor State
 
 #### Without Pagination  
 https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorstate=TX
@@ -55,7 +53,7 @@ https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorstate=TX&size=
 ### Sample Output
 ![Alt text](docs/SponsorState.png)
 
-### Search by Plan Name
+### 3. Search by Plan Name
 
 #### Without Pagination , By default this API returns Max 10 records. 
 https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?planname=401k
@@ -67,26 +65,24 @@ https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?planname=401k&size=2&
 ![Alt text](docs/PlanName.png)
 
 
-## System Components
-Following are the different componets used in the system  
+## System Components in Detail
 
 ## AWS Elastic Search
 
 Elasticsearch is an open-source, RESTful, distributed search and analytics engine built on Apache Lucene, when it comes to 
 Amazon Elasticsearch Service, it  is a fully managed service that is provided by amazon, Basically it provides two different services
 one is a single node service and the other is a clustered service with different master nodes and deploying them in different
-availability zones for high availability. Along with this  it also offers Kibana a visual dashbaord by default when
-we subscribe for Elastic search service. It also provides certain plugins with different log shippers like logstash for 
-pushing the required data. 
+availability zones for high availability. Along with this,  it also offers Kibana a visual dashbaord by default,  when
+we subscribe for Elastic search service. Amazon also provides certain plugins with different log shippers like logstash for 
+ingesting the required data to elastic search. 
 
 ## Configuartion 
 ![Alt text](docs/Elastic-Search-Instance.png)
 
 
 ## Data Ingestion
-There are different data ingestion tools data for ingesting the data. in the same context we 
-use the term log shippers , there are different log shippers available in todays cloud world
-like Filebeat, Logstash, Fluentd, etc. I had leveraged logstash here for ingesting the test
+In todays cloud and IOT world with data growing exponentially data ingestion plays an important role. Therefore there are different data ingestion tools  for ingesting the data into different repositories. In the same context the term log shippers is used, there are different 
+log shippers available in todays cloud world like Filebeat, Logstash, Fluentd, etc. I had leveraged logstash here for ingesting the given test
 data into elatic search server as Amazon provides elastic search output channel plugin that can
 be used with logstash, this plugin helped me in pushing the huge csv file into elastic search
 by doing bulk upload. 
@@ -97,15 +93,16 @@ by doing bulk upload.
 
 ## Elastic Container Service
 Containers are the next level of virtual computing that came after virtual machines. 
-containers are easily deployable with different services like docker, rocket etc. Containers
-are the most frequently used packaging component in today cloud world. Therefore container orchestartion
-is the most important task in todays container world, Today we ave different container orchestartion
+Containers are easily deployable with different services like Docker, Rocket etc. Containers
+are the most frequently used packaging component in today cloud world,Therefore container orchestartion
+is the most important task in todays container world and today we have different container orchestartion
 frameworks like Kubernetes, Docker Swarm and many managed services like GKE, AKE, OKE and ECS.
-I had levaraged ECS from Amazon for container orchestartion services by leveraged the autoscaling group\
+I had levaraged ECS from Amazon for container orchestartion services by leveraging the autoscaling group\
 which provides high availability. 
 
 ## Cluster Details 
 ![Alt text](docs/ECS-Cluster.png)
+
 
 ## Configuartion
 ![Alt text](docs/ECS-AutoScaling-Group.png)
@@ -115,8 +112,8 @@ which provides high availability.
 ## Load Balancer
 Load balancer provides high availability to the system, so i had leveraged elastic load balancer 
 provided by AWS deployed across multiple Availability Zones. Load balancer in my current system
-talks to ECS for provding the required services. One point to note here is i had leveraged
-spring actuator health endpoint for getting the health of the system. 
+talks to ECS for provding the required services. One point to note here is, AWS Load balanacer requires certain
+health check point to be configured , i had leveraged spring actuator health endpoint for getting the health of the my system. 
  
 ## Configuartion 
 ![Alt text](docs/Loadbalancer.png)
@@ -126,7 +123,7 @@ spring actuator health endpoint for getting the health of the system.
 API Gateway is one of the design pattern that is used with micro service based architecture, It acts as a single point of entry
 for all the micro services in the system. Amazon provdes the same system with the component named
 Amazon API Gateway. Apart from acting as a single point of entry, Amazon API gateway provides numerous
-other features like authenication, documentation, Testing, monetization , Securing from DDOS attacks and 
+other features like authenication, documentation, Testing, Monetization of your API by resting number of calls to API , Securing from DDOS attacks and 
 many more.  
 
 ### API Creation
@@ -136,13 +133,17 @@ many more.
 ### API Configuration
 
 API Gateway Configuation for the given API, if you see on the right side of the image here, we 
-can see the reference to load balancer. In the current System API gateway is configured to load balancer
-which inturn is pointed to ECS for better availability. 
+can see the reference to load balancer. In the current System API gateway is configured to load balancer than directly
+interacting with ECS for better availability. 
  
 ![Alt text](docs/API-Gateway-Configuration.png)
 
 
 ## Docker - Image
+Building and publishing docker images to reposoitries is part of continuous integration. Therefore my gradle script
+is responsible for pushing an publishing  docker image of my Spring Boot application to docker registry.
+
+
 
 ### Steps
 1. Build a docker image of the Spring Boot application
@@ -152,13 +153,14 @@ My Docker Repo , where the docker image is published.
 ![Alt text](docs/My-DockerHub-Repo.png)
 
 ### Gradle Docker
+
 Gradle kick starting building and  pushing of Docker image  to docker hub
 
 ![Alt text](docs/DockerBuild-and-Push-to-DockerHub.png)
 
 
 ## Unit Testing
-Unit testing is an integral part of agile development principles. Today we have different framework like junit, mockito
+An improper unit testing product will definitely impact the product deliverable. Therefore  Unit testing is an integral part of any agile development principles. Today we have different framework like junit, mockito
 any many other frameworks, in the current system i had leveraged a framework called spock.
 
 Spock is a testing and specification framework for Java and Groovy applications. 
@@ -189,7 +191,7 @@ Application can be extended with more capabilities by adding some of the followi
 
 ## Conclusion
 Finally to conclude, This is a wonderfull excercise that gave me opportunity to look and work on different components of AWS and look into the 
-system in a more broad way. in fact We can leverage many more feature from AWS to enhance the system as per the requirements. Any corner you think of either its
+system in a more broad way. Infact we can leverage many more feature from AWS to enhance the system as per the requirements. Any corner you think of either its
 on analytics , Machine learning , IOT or any use case,  we can pretty much leverage AWS and other public cloud services. 
 
 Some of my articles  in the context of cloud computing.
