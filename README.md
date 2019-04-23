@@ -93,7 +93,7 @@ ingesting the required data to elastic search.
 
 
 ## Logstash Data Ingestion
-In todays cloud and IOT world with data growing exponentially data ingestion plays an important role. Therefore there are different open source  data ingestion tools  for ingesting the data into different repositories. In the same context the term log shippers is used, there are different 
+In todays cloud and IOT world with data growing exponentially data ingestion plays an important role. Therefore, there are different open source  data ingestion tools  for ingesting the data into different repositories. In the same context the term log shippers is used, there are different 
 log shippers available in todays cloud world like Filebeat, Logstash, Fluentd, etc. I had leveraged logstash here for ingesting the given test
 data into elastic search server as Amazon provides elastic search output channel plugin that can
 be used with logstash, this plugin helped me in pushing the huge csv file into elastic search
@@ -107,9 +107,9 @@ by doing bulk upload.
 Containers are the next level of virtual computing that came after virtual machines. 
 Containers are easily deployable with different services like Docker, Rocket etc. Containers
 are the most frequently used packaging component in today cloud world,Therefore container orchestartion
-is the most important task in todays container world and today we have different container orchestartion
+is the most important task in today's container world and today we have different container orchestartion
 frameworks like Kubernetes, Docker Swarm and many managed services like GKE, AKE, OKE and ECS.
-I had levaraged ECS from Amazon for container orchestartion services by leveraging the autoscaling group\
+I had leveraged ECS from Amazon for container orchestartion services by leveraging the autoscaling group\
 which provides high availability. 
 
 ## Cluster Details 
@@ -124,7 +124,7 @@ which provides high availability.
 ## Load Balancer
 Load balancer provides high availability to the system, so i had leveraged elastic load balancer 
 provided by AWS deployed across multiple Availability Zones. Load balancer in my current system
-talks to ECS for provding the required services. One point to note here is, AWS Load balanacer requires certain
+talks to ECS for providing the required services. One point to note here is, AWS Load balancer requires certain
 health check point to be configured , i had leveraged spring actuator health endpoint for getting the health of the my system. 
  
 ## Configuartion 
@@ -144,7 +144,7 @@ many more.
 
 ### API Configuration
 
-API Gateway Configuation for the given API, if you see on the right side of the image here, we 
+API Gateway Configuration for the given API, if you see on the right side of the image here, we 
 can see the reference to load balancer. In the current System API gateway is configured to load balancer than directly
 interacting with ECS for better availability. 
  
@@ -196,7 +196,7 @@ for reference for the same.
 
 Application can be extended with more capabilities by adding some of the following features.
 
-* Route  53 can be configured to API Gateway to levarge more DNS capabilities.
+* Route  53 can be configured to API Gateway to leverage more DNS capabilities.
 * Configuration management can be done using AWS cloudformation and AWS Service catalog.
 * Lambda authorizers and Amazon Cognito user pools can be leveraged for rest authentication solutions.
 * Kibana an extra service that  comes by default when you subscribe for Elastic search in AWS can be levaraged for log mangement.
