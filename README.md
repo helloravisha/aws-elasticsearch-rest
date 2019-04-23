@@ -6,23 +6,29 @@ Using Java, write a micro service that invokes AWS elastic search and make it av
 
 1. Test Data - http://askebsa.dol.gov/FOIA%20Files/2017/Latest/F_5500_2017_Latest.zip             
 2. Search should be allowed by Plan name, Sponsor name and Sponsor State             
-3. Use AWS best practices              
+3. Use AWS best practices        
 
 
-## Deliverbales - Amazon  API Gateway based Microservice API's
+## System  Architecture
+description 
+![Alt text](docs/Architecture.png)      
 
-### Following are the three API's developed with and without paginaton.
 
-#### With Pagination , You can mentione the number of records along with the offset.
-#### Without Pagination , By default every  API returns Max 10 records. 
+## Final Deliverables - 
+
+Following are the three  Amazon  API Gateway based Microservice API's  developed with and without paginaton with above architecture 
+in place.
+
+* With Pagination : You can mention the number of records along with the offset.
+* Without Pagination : By default every  API returns Max 10 records. 
 
 
 ### Search by Sponsor Name
 
-#### Without Pagination 
+* ##### Without Pagination 
 https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorname=david
 
-#### With Pagination
+* ##### With Pagination
 https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?sponsorname=david&size=5&offset=1
 
 ### Sample Output
@@ -51,9 +57,8 @@ https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?planname=401k&size=2&
 ![Alt text](docs/PlanName.png)
 
 
-## System  Architecture
-description 
-![Alt text](docs/Architecture.png)
+## System Components
+Following are the different componets used in the system  
 
 ## AWS Elastic Search
 description 
