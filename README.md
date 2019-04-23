@@ -84,7 +84,12 @@ description
 
 
 ## Load Balancer
-description 
+Load balancer provides high availibility to the system, so i had leveraged elastic load balancer 
+provided by AWS deployed across multiple Availaibity Zones. Load balancer in my current system
+talks to ecs for provding the required services. One point to note here is i had leveraged
+spring actuator health endpoint for getting the health of the system. 
+ 
+## Configuartion 
 ![Alt text](docs/Loadbalancer.png)
 
 
@@ -95,7 +100,11 @@ Amazon API Gateway. Apart from acting as a single point of entry, Amazon API gat
 other features like authenication, documentation, Testing, monetization , Securing from DDOS attacks and 
 many more.  
 
+### API Creation
+
 ![Alt text](docs/API-Gateway.png)
+
+### API Configuration
 
 API Gateway Configuation for the given API, if you see on the right side of the image here, we 
 can see the reference to load balancer. In the current System API gateway is configured to load balancer
@@ -113,7 +122,9 @@ which inturn is pointed to ECS for better availability.
 My Docker Repo , where the docker image is published. 
 ![Alt text](docs/My-DockerHub-Repo.png)
 
+### Gradle Docker
 Gradle kick starting building and  pushing of Docker image  to docker hub
+
 ![Alt text](docs/DockerBuild-and-Push-to-DockerHub.png)
 
 
@@ -125,13 +136,14 @@ Spock is a testing and specification framework for Java and Groovy applications.
 
 Why Spock?
 
-it is Extremely expressive , we can just use english sentences to name the Testing methods
-Facilitates the Given/When/Then syntax for your tests, where given is the inputs, when is execution and then is final validation of your results
-Compatible with most IDEs and CI Servers.
+* it is Extremely expressive , we can just use english sentences to name the Testing methods
+* Facilitates the Given/When/Then syntax for your tests, where given is the inputs, when is execution and then is final validation of your results
+* Compatible with most IDEs and CI Servers.
 
-Want to know more about spock you can land in this page,
+You can find more information here,
 https://dzone.com/articles/adapter-design-pattern-video
 
+### Unit Test Results
 All the three Rest API are unit tested and the results are 100% clean, attached the results
 for reference for the same.
 
@@ -139,7 +151,7 @@ for reference for the same.
 
 ## Possible Enhancements
 
-We can extend the application with more capabilities by adding some of the following feaatures.
+Application can be extended with more capabilities by adding some of the following features.
 
 * Route  53 can be configured to API Gateway to levarge more DNS capabilities.
 * Configuration management can be done using AWS cloudformation and AWS Service catalog.
@@ -153,9 +165,9 @@ on analytics , Machine learning , IOT or any use case,  we can pretty much lever
 
 Some of my articles  in the context of cloud computing.
 
-https://ravishajava.com/2018/08/11/my-case-study-on-publicly-available-cloud-migration-coca-cola-cloud-journey/
-https://ravishajava.com/2018/08/10/log-management-kubernetes/
-https://ravishajava.com/2018/08/08/elasticsearch-datasource-grapahana/
+* https://ravishajava.com/2018/08/11/my-case-study-on-publicly-available-cloud-migration-coca-cola-cloud-journey/
+* https://ravishajava.com/2018/08/10/log-management-kubernetes/
+* https://ravishajava.com/2018/08/08/elasticsearch-datasource-grapahana/
 
 
 
