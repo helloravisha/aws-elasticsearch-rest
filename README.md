@@ -29,7 +29,18 @@ with  the mandatory query parameters "sponsorname", "sponsorstate" or  "planname
 
 * With Pagination : You can mention the number of records along with the offset,  here you can pass two optional  extra parameters "size" or "offset" along with the mandatory parameter.
                     
-* Without Pagination : By default every  API returns Max 10 records, here you should pass the required  mandatory parameter.  
+* Without Pagination : By default every  API returns Max 10 records, here you should pass the required  mandatory parameter.
+
+### Output Fields ( ResponseBody)
+For Testing,  i had considered only the following fields. Therefore the API will return response only with the following fields. We 
+can update the model as per our business requirement. 
+
+* FILING_STATUS 
+* PLAN_NAME 
+* SPONS_SIGNED_NAME 
+* SPONS_DFE_MAIL_US_STATE 
+* SPONS_DFE_LOC_US_CITY 
+* BUSINESS_CODE  
 
 
 ### 1. Search by Sponsor Name
