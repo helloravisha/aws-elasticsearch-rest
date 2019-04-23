@@ -25,10 +25,11 @@ level micro service acrchitecture of the services in the system.
 ## Final Deliverables 
 
 With the above architectural components in place, following are the three API's  exposed using  Amazon  API Gateway. All the three methods provides optional pagination along
-with  the required query string sponsorname, sponsorstate or  planname.
+with  the mandatory query parameters "sponsorname", "sponsorstate" or  "planname".
 
-* With Pagination : You can mention the number of records along with the offset,  here you can pass two optional  extra parameters size and offset.
-* Without Pagination : By default every  API returns Max 10 records, here you should pass the required parameter.  
+* With Pagination : You can mention the number of records along with the offset,  here you can pass two optional  extra parameters "size" or "offset" along with the mandatory parameter.
+                    
+* Without Pagination : By default every  API returns Max 10 records, here you should pass the required  mandatory parameter.  
 
 
 ### 1. Search by Sponsor Name
