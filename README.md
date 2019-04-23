@@ -10,12 +10,16 @@ Using Java, write a micro service that invokes AWS elastic search and make it av
 
 
 ## System  Architecture
-description 
+Following are the different AWS componenents leveraged for building highy avalabile and scalable
+system. 
+
 ![Alt text](docs/Architecture.png)  
 
 
 ## Service  Architecture
-description 
+Spring boot is used to develop the complete  micro service system, following is the high
+level micro service acrchitecture of the services in the system.
+
 ![Alt text](docs/Service-Architecture.png)       
 
 
@@ -67,26 +71,51 @@ https://5g7l7uaz82.execute-api.us-east-2.amazonaws.com/dev?planname=401k&size=2&
 Following are the different componets used in the system  
 
 ## AWS Elastic Search
-description 
+
+Elasticsearch is an open-source, RESTful, distributed search and analytics engine built on Apache Lucene, when it comes to 
+Amazon Elasticsearch Service, it  is a fully managed service that is provided by amazon, Basically it provides two different services
+one is a single node service and the other is a clustered service with different master nodes and deploying them in different
+availability zones for high availability. Along with this  it also offers Kibana a visual dashbaord by default when
+we subscribe for Elastic search service. It also provides certain plugins with different log shippers like logstash for 
+pushing the required data. 
+
+## Configuartion 
 ![Alt text](docs/Elastic-Search-Instance.png)
 
 
 ## Data Ingestion
-description 
+There are different data ingestion tools data for ingesting the data. in the same context we 
+use the term log shippers , there are different log shippers available in todays cloud world
+like Filebeat, Logstash, Fluentd, etc. I had leveraged logstash here for ingesting the test
+data into elatic search server as Amazon provides elastic search output channel plugin that can
+be used with logstash, this plugin helped me in pushing the huge csv file into elastic search
+by doing bulk upload. 
+
+## Configuartion   
 ![Alt text](docs/Logstash-Config.png)
 
 
 ## Elastic Container Service
-description 
+Containers are the next level of virtual computing that came after virtual machines. 
+containers are easily deployable with different services like docker, rocket etc. Containers
+are the most frequently used packaging component in today cloud world. Therefore container orchestartion
+is the most important task in todays container world, Today we ave different container orchestartion
+frameworks like Kubernetes, Docker Swarm and many managed services like GKE, AKE, OKE and ECS.
+I had levaraged ECS from Amazon for container orchestartion services by leveraged the autoscaling group\
+which provides high availability. 
+
+## Cluster Details 
 ![Alt text](docs/ECS-Cluster.png)
+
+## Configuartion
 ![Alt text](docs/ECS-AutoScaling-Group.png)
 
 
 
 ## Load Balancer
-Load balancer provides high availibility to the system, so i had leveraged elastic load balancer 
-provided by AWS deployed across multiple Availaibity Zones. Load balancer in my current system
-talks to ecs for provding the required services. One point to note here is i had leveraged
+Load balancer provides high availability to the system, so i had leveraged elastic load balancer 
+provided by AWS deployed across multiple Availability Zones. Load balancer in my current system
+talks to ECS for provding the required services. One point to note here is i had leveraged
 spring actuator health endpoint for getting the health of the system. 
  
 ## Configuartion 
