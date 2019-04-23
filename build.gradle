@@ -1,0 +1,85 @@
+buildscript {
+    ext {
+        springBootVersion     = "1.5.2.RELEASE"
+        gradleDockerVersion   = "1.2"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
+    }
+}
+
+group = "helloravisha"
+
+apply plugin: 'docker'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'aws-es-service'
+    version =  '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+
+dependencies {
+    compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.5.0'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '6.5.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.6'
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.2.RELEASE'
+
+    compile group: 'junit', name: 'junit', version: '4.12'
+	compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+
+    compile 'io.springfox:springfox-swagger2:2.3.0'
+    compile 'io.springfox:springfox-swagger-ui:2.3.0'
+
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+
+    compile group: 'org.json', name: 'json', version: '20090211'
+
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile(
+            'junit:junit:4.12',
+            'org.spockframework:spock-core:1.1-groovy-2.4-rc-2',
+            'org.spockframework:spock-spring:1.1-groovy-2.4-rc-3'
+
+    )
+
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+  push = true
+  applicationName = jar.baseName
+  dockerfile = file('docker/Dockerfile')
+  doFirst {
+    copy {
+      from jar
+      into stageDir
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
