@@ -11,10 +11,15 @@ Using Java, write a micro service that invokes AWS elastic search and make it av
 
 ## System  Architecture
 description 
-![Alt text](docs/Architecture.png)      
+![Alt text](docs/Architecture.png)  
 
 
-## Final Deliverables - 
+## Service  Architecture
+description 
+![Alt text](docs/Service-Architecture.png)       
+
+
+## Final Deliverables 
 
 Following are the three  Amazon  API Gateway based Microservice API's  developed with and without paginaton with above architecture 
 in place.
