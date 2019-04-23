@@ -92,10 +92,10 @@ ingesting the required data to elastic search.
 ![Alt text](docs/Elastic-Search-Instance.png)
 
 
-## Data Ingestion
-In todays cloud and IOT world with data growing exponentially data ingestion plays an important role. Therefore there are different data ingestion tools  for ingesting the data into different repositories. In the same context the term log shippers is used, there are different 
+## Logstash Data Ingestion
+In todays cloud and IOT world with data growing exponentially data ingestion plays an important role. Therefore there are different open source  data ingestion tools  for ingesting the data into different repositories. In the same context the term log shippers is used, there are different 
 log shippers available in todays cloud world like Filebeat, Logstash, Fluentd, etc. I had leveraged logstash here for ingesting the given test
-data into elatic search server as Amazon provides elastic search output channel plugin that can
+data into elastic search server as Amazon provides elastic search output channel plugin that can
 be used with logstash, this plugin helped me in pushing the huge csv file into elastic search
 by doing bulk upload. 
 
