@@ -184,7 +184,9 @@ Why Spock?
 * Compatible with most IDEs and CI Servers.
 
 You can find more information here,
-https://dzone.com/articles/adapter-design-pattern-video
+https://dzone.com/articles/cleaner-tests-with-spock
+https://dzone.com/articles/introduction-spock
+
 
 ### Unit Test Results
 All the three Rest API are unit tested and the results are 100% clean, attached the results
