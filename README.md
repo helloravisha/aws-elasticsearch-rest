@@ -42,6 +42,7 @@ can update the model as per our business requirement.
 * SPONS_DFE_LOC_US_CITY 
 * BUSINESS_CODE  
 
+Note: AWS components are now shutdown as the testing is complete. Following links are just for information about how they work. 
 
 ### 1. Search by Sponsor Name
 
